@@ -5,3 +5,5 @@ public class Diagnosis  {
     //wycena usterki, ceny pobiera z PriceList
     //ustalenie daty odbioru
 }
+
+
