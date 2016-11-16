@@ -3,6 +3,7 @@ package Computer;
 import java.util.Date;
 
 public class Repair {
+
     private float Price;
     private Date StartRepairDate;
     private Date EndRepairDate;
@@ -31,6 +32,3 @@ public class Repair {
         Price = price;
     }
 }
- enum Check{
-     Pending, Ready
- }
