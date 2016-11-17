@@ -1,10 +1,10 @@
 package Computer;
 
-public class PriceList  {
+public class PriceList {
     //wypisanie usług z cenami
     //Diagnosis pobiera ceny stąd
     private int Replace;
-    private int Instalation;
+    private int Installation;
     private int Building;
     private int Cleaning;
     private int Reparing;
@@ -18,11 +18,11 @@ public class PriceList  {
     }
 
     public int getInstalation() {
-        return Instalation;
+        return Installation;
     }
 
-    public void setInstalation(int installation) {
-        Instalation = installation;
+    public void setInstallation(int installation) {
+        Installation = installation;
     }
 
     public int getBuilding() {
