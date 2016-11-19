@@ -1,6 +1,13 @@
 package Repos;
 
+import Computer.Repair;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class RepairRepository {
     private Connection connection;
@@ -12,4 +19,31 @@ public class RepairRepository {
             "ExpectedDateOfReception" +
             "Price decimal" +
             ")";
+
+    private Statement createTable;
+
+    private String insertSQL = "INSTERT INTO Reapeir(NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?)";
+    private String deleteSQL = "DELETE FROM Repair WHERE ID = ?";
+    private String updateSQL = "UPDATE Reapir set NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ?";
+    private String selectByIdSql = "SELECT * FROM Repair WHERE ID=?";
+    private String selectAllSql = "SELECT * FROM Repair";
+
+    public RepairRepository(Connection connection){
+        this.connection = connection;
+
+        try{
+            createTable = connection.createStatement();
+
+            boolean tableExists = false;
+            ResultSet rs = connection.getMetaData().getTables(null, null, null, null);
+            while (rs.next()){
+                if(rs.getString("TABLE_NAME").equalsIgnoreCase("Repair")){
+                    tableExists = true;
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
