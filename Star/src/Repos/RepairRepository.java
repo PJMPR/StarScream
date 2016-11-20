@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RepairRepository {
@@ -22,11 +24,17 @@ public class RepairRepository {
 
     private Statement createTable;
 
-    private String insertSQL = "INSTERT INTO Reapeir(NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?)";
-    private String deleteSQL = "DELETE FROM Repair WHERE ID = ?";
-    private String updateSQL = "UPDATE Reapir set NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ?";
-    private String selectByIdSql = "SELECT * FROM Repair WHERE ID=?";
-    private String selectAllSql = "SELECT * FROM Repair";
+    private String InsertSQL = "INSTERT INTO Reapeir(NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?)";
+    private String DeleteSQL = "DELETE FROM Repair WHERE ID = ?";
+    private String UpdateSQL = "UPDATE Reapir set NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ?";
+    private String SelectByIdSQL = "SELECT * FROM Repair WHERE ID=?";
+    private String SelectAllSQL = "SELECT * FROM Repair";
+
+    private PreparedStatement Insert;
+    private PreparedStatement Delete;
+    private PreparedStatement Update;
+    private PreparedStatement SelectByID;
+    private PreparedStatement SelectAll;
 
     public RepairRepository(Connection connection){
         this.connection = connection;
@@ -42,8 +50,70 @@ public class RepairRepository {
                     break;
                 }
             }
+            if(!tableExists){
+                createTable.executeUpdate(CreateTableSQL);
+                Insert = connection.prepareStatement(InsertSQL);
+                Delete = connection.prepareStatement(DeleteSQL);
+                Update = connection.prepareStatement(UpdateSQL);
+                SelectByID = connection.prepareStatement(SelectByIdSQL);
+                SelectAll = connection.prepareStatement(SelectAllSQL);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public Repair get(int RepairID){
+        try{
+            SelectByID.setInt(1, RepairID);
+            ResultSet rs = SelectByID.executeQuery();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Repair> getAll(){
+        try {
+            List<Repair> result = new ArrayList<Repair>();
+            ResultSet rs = SelectAll.executeQuery();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void Delete (Repair R){
+        try{
+            Delete.setInt(1, R.getID());
+            Delete.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void Add (Repair R){
+        try {
+            Insert.setInt(1, R.getPrice());
+            Insert.setDate(2, R.getStartRepairDate());
+            Insert.setDate(3, R.getEndRepairDate());
+            Insert.setString(4, R.getNameOfDeviceInRepair());
+            Insert.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void Update (Repair R){
+        try {
+            Update.setInt(1, R.getPrice());
+            Update.setDate(2, R.getStartRepairDate());
+            Update.setDate(3, R.getEndRepairDate());
+            Update.setString(4, R.getNameOfDeviceInRepair());
+            Update.executeUpdate();
+        }catch (SQLException ex){
+            ex.printStackTrace();
         }
     }
 }

@@ -1,11 +1,13 @@
 package Account;
 
+import Computer.Repair;
+
 import java.util.List;
 
 public class Accounts {
     private int ID;
     private int ProfileID;
-    private List<History> History;
+    private List<Repair> Repair;
 
     public int getID() {
         return ID;
@@ -23,11 +25,11 @@ public class Accounts {
         ProfileID = profileID;
     }
 
-    public List<Account.History> getHistory() {
-        return History;
+    public List<Computer.Repair> getRepair() {
+        return Repair;
     }
 
-    public void setHistory(List<Account.History> history) {
-        History = history;
+    public void setRepair(List<Computer.Repair> repair) {
+        Repair = repair;
     }
 }
