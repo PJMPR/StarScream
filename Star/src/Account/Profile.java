@@ -1,14 +1,18 @@
 package Account;
 
+import Computer.Repair;
+
 import java.util.List;
 
 public class Profile {
+//TotalPrice = getPrice of all devices on the list
     private int ID;
     private String Name;
     private String Surname;
-    private List<Accounts> AccountList;
+    private List<Repair> DevicesInRepair;
     private String Email;
     private String Password;
+    private int TotalPrice;
 
     public int getID() {
         return ID;
@@ -34,12 +38,12 @@ public class Profile {
         Surname = surname;
     }
 
-    public List<Accounts> getAccountList() {
-        return AccountList;
+    public List<Repair> getDevicesInRepair() {
+        return DevicesInRepair;
     }
 
-    public void setAccountList(List<Accounts> accountList) {
-        AccountList = accountList;
+    public void setDevicesInRepair(List<Repair> devicesInRepair) {
+        DevicesInRepair = devicesInRepair;
     }
 
     public String getEmail() {
@@ -56,5 +60,13 @@ public class Profile {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public int getTotalPrice() {
+        return TotalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        TotalPrice = totalPrice;
     }
 }

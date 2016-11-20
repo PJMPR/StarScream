@@ -1,19 +1,39 @@
 package Computer;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 public class Repair extends PriceList {
-
-    private double Price;
+//Price = get.somethingFromPriceList
+    private int ID;
+    private int ProfileID;
+    private int Price;
     private Date StartRepairDate;
     private Date EndRepairDate;
     private String NameOfDeviceInRepair;
+    private List<Repair> Repairs;
 
-    public double getPrice() {
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getProfileID() {
+        return ProfileID;
+    }
+
+    public void setProfileID(int profileID) {
+        ProfileID = profileID;
+    }
+
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         Price = price;
     }
 
@@ -39,5 +59,13 @@ public class Repair extends PriceList {
 
     public void setNameOfDeviceInRepair(String nameOfDeviceInRepair) {
         NameOfDeviceInRepair = nameOfDeviceInRepair;
+    }
+
+    public List<Repair> getRepairs() {
+        return Repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        Repairs = repairs;
     }
 }
