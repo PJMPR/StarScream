@@ -14,15 +14,15 @@ public class RepairRepository {
             "ProfileID int" +
             "NameOfDevice VARCHAR(50)" +
             "DateOfAcceptance date" +
-            "ExpectedDateOfReception" +
+            "ExpectedDateOfReception date" +
             "Price int" +
             ")";
 
     private Statement createTable;
 
-    private String InsertSQL = "INSTERT INTO Repair(Profile ID, NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?, ?)";
+    private String InsertSQL = "INSERT INTO Repair(Profile ID, NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?, ?)";
     private String DeleteSQL = "DELETE FROM Repair WHERE ID = ?";
-    private String UpdateSQL = "UPDATE Repair set Profile ID = ?, NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ?";
+    private String UpdateSQL = "UPDATE Repair set Profile ID = ?, NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ? WHERE ID = ?";
     private String SelectByIdSQL = "SELECT * FROM Repair WHERE ID=?";
     private String SelectAllSQL = "SELECT * FROM Repair";
 
@@ -71,6 +71,7 @@ public class RepairRepository {
                 result.setStartRepairDate(rs.getDate("DateOfAcceptance"));
                 result.setEndRepairDate(rs.getDate("ExpectedDateOfReception"));
                 result.setNameOfDeviceInRepair(rs.getString("NameOfDevice"));
+                return result;
             }
         } catch (SQLException ex){
             ex.printStackTrace();
@@ -90,6 +91,7 @@ public class RepairRepository {
                 r.setStartRepairDate(rs.getDate("DateOfAcceptance"));
                 r.setEndRepairDate(rs.getDate("ExpectedDateOfReception"));
                 r.setNameOfDeviceInRepair(rs.getString("NameOfDevice"));
+                result.add(r);
             }
         } catch (SQLException ex){
             ex.printStackTrace();

@@ -21,7 +21,7 @@ public class ProfileRepository {
 
     private Statement createTable;
 
-    private String InsertSQL = "INSTERT INTO Profile(Name, Surname, Email, Password, TotalPrice) VALUES (?, ?, ?, ?, ?)";
+    private String InsertSQL = "INSERT INTO Profile(Name, Surname, Email, Password, TotalPrice) VALUES (?, ?, ?, ?, ?)";
     private String DeleteSQL = "DELETE FROM Profile WHERE ID = ?";
     private String UpdateSQL = "UPDATE Profile set Name = ?, Surname = ?, Email = ?, Password = ?, TotalPrice = ?";
     private String SelectByIdSQL = "SELECT * FROM Profile WHERE ID=?";
@@ -72,6 +72,7 @@ public class ProfileRepository {
                 result.setEmail(rs.getString("Email"));
                 result.setPassword(rs.getString("Password"));
                 result.setTotalPrice(rs.getInt("TotalPrice"));
+                return result;
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -91,11 +92,11 @@ public class ProfileRepository {
                 p.setEmail(rs.getString("Email"));
                 p.setPassword(rs.getString("Password"));
                 p.setTotalPrice(rs.getInt("TotalPrice"));
+                result.add(p);
             }
         } catch (SQLException ex){
             ex.printStackTrace();
         }
-
         return null;
     }
 
