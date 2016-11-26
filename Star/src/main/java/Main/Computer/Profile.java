@@ -1,10 +1,11 @@
-package Main.Computer.Account;
+package Main.Computer;
 
+import Main.Computer.IHaveID;
 import Main.Computer.Repair;
 
 import java.util.List;
 
-public class Profile {
+public class Profile implements IHaveID {
 //TotalPrice = getPrice of all devices on the list
     private int ID;
     private String Name;

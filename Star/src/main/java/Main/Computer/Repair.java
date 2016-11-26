@@ -3,7 +3,7 @@ package Main.Computer;
 import java.sql.Date;
 import java.util.List;
 
-public class Repair extends PriceList {
+public class Repair implements IHaveID {
 //Price = get.somethingFromPriceList
     private int ID;
     private int ProfileID;

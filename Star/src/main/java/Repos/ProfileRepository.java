@@ -1,7 +1,6 @@
 package Repos;
 
-import Main.Computer.Account.Profile;
-import Main.Computer.Repair;
+import Main.Computer.Profile;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepairRepository {
+public class RepairRepository extends BaseRepository<Repair> {
     private Connection connection;
 
     private String CreateTableSQL = "CREATE TABLE Repair(" +
