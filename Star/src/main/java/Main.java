@@ -1,4 +1,4 @@
-import Computer.Repair;
+import Main.Computer.Repair;
 import Repos.ProfileRepository;
 import Repos.RepairRepository;
 

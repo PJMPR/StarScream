@@ -1,6 +1,6 @@
 package Repos;
 
-import Computer.Repair;
+import Main.Computer.Repair;
 
 import java.sql.*;
 import java.util.ArrayList;

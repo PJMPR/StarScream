@@ -1,4 +1,4 @@
-package Computer;
+package Main.Computer;
 
 public class PriceList {
     //wypisanie usług z cenami

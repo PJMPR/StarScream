@@ -1,6 +1,6 @@
-package Account;
+package Main.Computer.Account;
 
-import Computer.Repair;
+import Main.Computer.Repair;
 
 import java.util.List;
 
