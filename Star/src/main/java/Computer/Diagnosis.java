@@ -1,4 +1,4 @@
-package Main.Computer;
+package Computer;
 
 public class Diagnosis extends Repair {
     //diagnoza usterki

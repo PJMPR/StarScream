@@ -1,6 +1,6 @@
 package Repos;
 
-import Main.Computer.IHaveID;
+import Computer.IHaveID;
 import Repos.Mappers.IMapRSIntoEntity;
 
 import java.sql.*;
@@ -31,8 +31,6 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
             Update = connection.prepareStatement(UpdateSQL());
             SelectByID = connection.prepareStatement(SelectByIdSQL());
             SelectAll = connection.prepareStatement(SelectAllSQL());
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,29 +67,24 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
     }
 
     public void Add(Entity entity){
-        try{
+        try {
             setupInsert(entity);
             Insert.executeUpdate();
-        }catch(SQLException ex){
+        }catch (SQLException ex){
             ex.printStackTrace();
         }
-
     }
 
     public void Update(Entity entity){
         try{
             setupUpdate(entity);
             Update.executeUpdate();
-
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-
     }
 
-    /* (non-Javadoc)
-     * @see dao.IRepository#delete(TEntity)
-     */
+
     public void Delete(Entity entity){
         try{
             Delete.setInt(1, entity.getID());

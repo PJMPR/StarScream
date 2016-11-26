@@ -1,7 +1,4 @@
-package Main.Computer;
-
-import Main.Computer.IHaveID;
-import Main.Computer.Repair;
+package Computer;
 
 import java.util.List;
 

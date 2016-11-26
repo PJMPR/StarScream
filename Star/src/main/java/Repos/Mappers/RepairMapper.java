@@ -1,11 +1,11 @@
 package Repos.Mappers;
 
-import Main.Computer.Repair;
+import Computer.Repair;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RepairMapper {
+public class RepairMapper implements IMapRSIntoEntity<Repair>{
     public Repair map(ResultSet rs) throws SQLException{
         Repair r = new Repair();
         r.setID(rs.getInt("ID"));
@@ -15,5 +15,9 @@ public class RepairMapper {
         r.setStartRepairDate(rs.getDate("ExpectedDateOfReception"));
         r.setPrice(rs.getInt("Price"));
         return r;
+    }
+
+    public int getID() {
+        return 0;
     }
 }

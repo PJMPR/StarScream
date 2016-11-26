@@ -1,4 +1,4 @@
-package Main.Computer;
+package Computer;
 
 public interface IHaveID {
     public int getID();

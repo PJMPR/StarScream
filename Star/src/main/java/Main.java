@@ -1,4 +1,8 @@
-import Main.Computer.Repair;
+import Computer.Profile;
+import Computer.Repair;
+import Repos.Mappers.IMapRSIntoEntity;
+import Repos.Mappers.ProfileMapper;
+import Repos.Mappers.RepairMapper;
 import Repos.ProfileRepository;
 import Repos.RepairRepository;
 
@@ -11,8 +15,11 @@ public class Main {
         String URL = "jdbc:hsqldb:hsql://localhost/testdb";
         try {
             Connection connection = DriverManager.getConnection(URL);
-            RepairRepository repo = new RepairRepository(connection);
-            ProfileRepository repo1 = new ProfileRepository(connection);
+            IMapRSIntoEntity<Repair> repairMapper = new RepairMapper();
+            IMapRSIntoEntity<Profile> profileMapper = new ProfileMapper();
+
+            RepairRepository repo = new RepairRepository(connection, repairMapper);
+            ProfileRepository repo1 = new ProfileRepository(connection, profileMapper);
 
             Repair SamsungGalaxyS5 = new Repair();
             SamsungGalaxyS5.setNameOfDeviceInRepair("Samsung Galaxy S5");

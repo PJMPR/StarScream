@@ -1,4 +1,4 @@
-package Main.Computer;
+package Computer;
 
 import java.sql.Date;
 import java.util.List;

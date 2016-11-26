@@ -1,6 +1,6 @@
 package Repos.Mappers;
 
-import Main.Computer.IHaveID;
+import Computer.IHaveID;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
