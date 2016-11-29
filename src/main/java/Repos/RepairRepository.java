@@ -3,7 +3,8 @@ package Repos;
 import Computer.Repair;
 import Repos.Mappers.IMapRSIntoEntity;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class RepairRepository extends BaseRepository<Repair> {
     public RepairRepository(Connection connection, IMapRSIntoEntity<Repair> mapper){

@@ -3,7 +3,8 @@ package Repos;
 import Computer.Profile;
 import Repos.Mappers.IMapRSIntoEntity;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class ProfileRepository extends BaseRepository<Profile> {
     public ProfileRepository(Connection connection, IMapRSIntoEntity<Profile> mapper){
