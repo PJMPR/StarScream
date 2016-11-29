@@ -16,8 +16,4 @@ public class ProfileMapper implements IMapRSIntoEntity<Profile> {
         p.setTotalPrice(rs.getInt("TotalPrice"));
         return p;
     }
-
-    public int getID() {
-        return 0;
-    }
 }

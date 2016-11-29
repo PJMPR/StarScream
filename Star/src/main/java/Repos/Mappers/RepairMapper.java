@@ -16,8 +16,4 @@ public class RepairMapper implements IMapRSIntoEntity<Repair>{
         r.setPrice(rs.getInt("Price"));
         return r;
     }
-
-    public int getID() {
-        return 0;
-    }
 }

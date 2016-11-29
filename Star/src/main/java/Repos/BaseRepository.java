@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseRepository <Entity extends IHaveID> implements IRepository{
+public abstract class BaseRepository <Entity extends IHaveID> implements IRepository<Entity>{
     protected Connection connection;
 
     protected Statement CreateTable;
@@ -38,7 +38,6 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
 
     public Entity get(int ProfileID){
         try{
-
             SelectByID.setInt(1, ProfileID);
             ResultSet rs = SelectByID.executeQuery();
             while(rs.next()){
@@ -76,14 +75,13 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
     }
 
     public void Update(Entity entity){
-        try{
+        try {
             setupUpdate(entity);
             Update.executeUpdate();
-        }catch(SQLException ex){
+        }catch (SQLException ex){
             ex.printStackTrace();
         }
     }
-
 
     public void Delete(Entity entity){
         try{
