@@ -9,9 +9,9 @@ public class Repair implements IHaveID {
     private int ProfileID;
     private int Price;
     private Date StartRepairDate;
-    private Date EndRepairDate;
+    private Date EndRepairDate; //Calendar generowanie daty odbioru
     private String NameOfDeviceInRepair;
-    private List<Repair> Repairs;
+    private Profile profile;
 
     public int getID() {
         return ID;
@@ -59,13 +59,5 @@ public class Repair implements IHaveID {
 
     public void setNameOfDeviceInRepair(String nameOfDeviceInRepair) {
         NameOfDeviceInRepair = nameOfDeviceInRepair;
-    }
-
-    public List<Repair> getRepairs() {
-        return Repairs;
-    }
-
-    public void setRepairs(List<Repair> repairs) {
-        Repairs = repairs;
     }
 }

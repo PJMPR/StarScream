@@ -52,4 +52,6 @@ public class ProfileRepository extends BaseRepository<Profile> {
         Update.setString(4, entity.getPassword());
         Update.setInt(5, entity.getTotalPrice());
     }
+    
+    //nowa metoda fillWithProfileRepairs
 }
