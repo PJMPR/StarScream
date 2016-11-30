@@ -4,14 +4,14 @@ import Computer.IHaveID;
 
 import java.util.List;
 
-public interface IRepository<Entity extends IHaveID> {
-    public Entity get(int ProfileID);
+public interface IRepository<TEntity extends IHaveID> {
+    public TEntity get(int ProfileID);
 
-    public List<Entity> getAll();
+    public List<TEntity> getAll();
 
-    public void Add(Entity entity);
+    public void Add(TEntity entity);
 
-    public void Update(Entity entity);
+    public void Update(TEntity entity);
 
-    public void Delete(Entity entity);
+    public void Delete(TEntity entity);
 }
