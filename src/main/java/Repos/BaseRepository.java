@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseRepository <Entity extends IHaveID> implements IRepository<Entity>{
+public abstract class BaseRepository <TEntity extends IHaveID> implements IRepository<TEntity>{
     protected Connection connection;
 
     protected Statement CreateTable;
@@ -18,9 +18,9 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
     protected PreparedStatement SelectByID;
     protected PreparedStatement SelectAll;
 
-    protected IMapRSIntoEntity<Entity> mapper;
+    protected IMapRSIntoEntity<TEntity> mapper;
 
-    protected BaseRepository (Connection connection, IMapRSIntoEntity<Entity> mapper){
+    protected BaseRepository (Connection connection, IMapRSIntoEntity<TEntity> mapper){
         this.connection = connection;
         this.mapper = mapper;
         try {
@@ -36,7 +36,7 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
         }
     }
 
-    public Entity get(int ProfileID){
+    public TEntity get(int ProfileID){
         try{
             SelectByID.setInt(1, ProfileID);
             ResultSet rs = SelectByID.executeQuery();
@@ -50,9 +50,9 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
         return null;
     }
 
-    public List<Entity> getAll(){
+    public List<TEntity> getAll(){
         try{
-            List<Entity> result = new ArrayList<Entity>();
+            List<TEntity> result = new ArrayList<TEntity>();
             ResultSet rs = SelectAll.executeQuery();
             while(rs.next()){
                 result.add(mapper.map(rs));
@@ -65,7 +65,7 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
         return null;
     }
 
-    public void Add(Entity entity){
+    public void Add(TEntity entity){
         try {
             setupInsert(entity);
             Insert.executeUpdate();
@@ -74,7 +74,7 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
         }
     }
 
-    public void Update(Entity entity){
+    public void Update(TEntity entity){
         try {
             setupUpdate(entity);
             Update.executeUpdate();
@@ -83,7 +83,7 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
         }
     }
 
-    public void Delete(Entity entity){
+    public void Delete(TEntity entity){
         try{
             Delete.setInt(1, entity.getID());
             Delete.executeUpdate();
@@ -122,8 +122,8 @@ public abstract class BaseRepository <Entity extends IHaveID> implements IReposi
         return "SELECT * FROM " + tableName();
     }
 
-    protected abstract void setupInsert(Entity entity) throws SQLException;
-    protected abstract void setupUpdate(Entity entity) throws SQLException;
+    protected abstract void setupInsert(TEntity entity) throws SQLException;
+    protected abstract void setupUpdate(TEntity entity) throws SQLException;
     protected abstract String tableName();
     protected abstract String CreateTableSQL();
     protected abstract String InsertSQL();
