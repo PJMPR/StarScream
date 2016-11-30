@@ -55,4 +55,6 @@ public class RepairRepository extends BaseRepository<Repair> {
         Update.setDate(4, entity.getEndRepairDate());
         Update.setString(5, entity.getNameOfDeviceInRepair());
     }
+    
+    //select po ProfileID
 }
