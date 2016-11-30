@@ -3,6 +3,8 @@ package Computer;
 public class PriceList {
     //wypisanie usług z cenami
     //Diagnosis pobiera ceny stąd
+	//Każdej czynności dać określoną ilość dni do wykonywania
+	//W ten sposób ustalone czekanie na swoje urządzenie
     private int Replace;
     private int Installation;
     private int Building;

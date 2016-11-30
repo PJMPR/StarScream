@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main( String[] args ){
-        String URL = "jdbc:hsqldb:hsql://localhost/testdb";
+        String URL = "jdbc:hsqldb:hsql://localhost/workdb";
         try {
             Connection connection = DriverManager.getConnection(URL);
             IMapRSIntoEntity<Repair> repairMapper = new RepairMapper();
@@ -27,6 +27,14 @@ public class Main {
 
             System.out.println("Adding the device to the database");
             repo.Add(SamsungGalaxyS5);
+            
+            Profile Jan = new Profile();
+            Jan.setName("Jan");
+            Jan.setSurname("Miętki");
+            Jan.setEmail("jan.mietki@gmail.com");
+            System.out.println("Adding profile to the database");
+            repo1.Add(Jan);
+            
         }catch (SQLException e){
             e.printStackTrace();
         }
