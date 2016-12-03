@@ -5,7 +5,13 @@
       <driver-ref>hsqldb.local</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
-      <jdbc-url>jdbc:hsqldb:mem:testdb</jdbc-url>
+      <jdbc-url>jdbc:hsqldb:file:localhost/workdb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="workdb@localhost" uuid="d24f0e6e-e14c-48e7-b99d-12d346109a5f">
+      <driver-ref>hsqldb.remote</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.hsqldb.jdbcDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:hsql://localhost/workdb</jdbc-url>
     </data-source>
   </component>
 </project>
