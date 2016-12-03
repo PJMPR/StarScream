@@ -38,6 +38,15 @@ public class RepairRepository extends BaseRepository<Repair> {
         return "UPDATE Repair set Profile ID = ?, NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ? WHERE ID = ?";
     }
 
+    /*
+        Select by ProfileID
+    */
+    protected String SelectByProfileID(){
+        return "SELECT * FROM"
+                + tableName()
+                + "WHERE ProfileID = ?";
+        }
+
     @Override
     protected void setupInsert(Repair entity) throws SQLException{
         Insert.setInt(1, entity.getPrice());
@@ -55,6 +64,4 @@ public class RepairRepository extends BaseRepository<Repair> {
         Update.setDate(4, entity.getEndRepairDate());
         Update.setString(5, entity.getNameOfDeviceInRepair());
     }
-    
-    //select po ProfileID
 }

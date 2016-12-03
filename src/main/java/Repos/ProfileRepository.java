@@ -54,4 +54,5 @@ public class ProfileRepository extends BaseRepository<Profile> {
     }
     
     //nowa metoda fillWithProfileRepairs
+
 }
