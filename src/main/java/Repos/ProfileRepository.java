@@ -58,8 +58,5 @@ public class ProfileRepository extends BaseRepository<Profile> implements IProfi
     public List<Profile> profiles(String name) {
         return null;
     }
-
     //nowa metoda fillWithProfileRepairs
-
-
 }
