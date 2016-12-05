@@ -2,14 +2,18 @@ package Repos;
 
 import Computer.IHaveID;
 import Repos.Mappers.IMapRSIntoEntity;
+import Repos.UOW.IUnitOfWork;
+import Repos.UOW.IUnitOfWorkRepository;
+import Repos.UOW.Entity;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseRepository <TEntity extends IHaveID> implements IRepository<TEntity>{
+public abstract class BaseRepository <TEntity extends IHaveID>
+        implements IRepository<TEntity>, IUnitOfWorkRepository{
     protected Connection connection;
-
+    protected IUnitOfWork uow;
     protected Statement CreateTable;
 
     protected PreparedStatement Insert;
@@ -20,7 +24,8 @@ public abstract class BaseRepository <TEntity extends IHaveID> implements IRepos
 
     protected IMapRSIntoEntity<TEntity> mapper;
 
-    protected BaseRepository (Connection connection, IMapRSIntoEntity<TEntity> mapper){
+    protected BaseRepository (Connection connection, IMapRSIntoEntity<TEntity> mapper, IUnitOfWork uow){
+        this.uow = uow;
         this.connection = connection;
         this.mapper = mapper;
         try {
@@ -86,6 +91,35 @@ public abstract class BaseRepository <TEntity extends IHaveID> implements IRepos
     public void Delete(TEntity entity){
         try{
             Delete.setInt(1, entity.getID());
+            Delete.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void persistAdd(Entity entity){
+        try{
+            setupInsert((TEntity)entity.getEntity());
+            Insert.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void persistUpdate(Entity entity){
+        try{
+            setupUpdate((TEntity)entity.getEntity());
+            Update.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void persistDelete(Entity entity){
+        try{
+            Delete.setInt(1, ((TEntity)entity.getEntity()).getID());
             Delete.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();

@@ -2,13 +2,15 @@ package Repos;
 
 import Computer.Repair;
 import Repos.Mappers.IMapRSIntoEntity;
+import Repos.UOW.IUnitOfWork;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
-public class RepairRepository extends BaseRepository<Repair> {
-    public RepairRepository(Connection connection, IMapRSIntoEntity<Repair> mapper){
-        super(connection, mapper);
+public class RepairRepository extends BaseRepository<Repair> implements IRepairRepository{
+    public RepairRepository(Connection connection, IMapRSIntoEntity<Repair> mapper, IUnitOfWork uow){
+        super(connection, mapper, uow);
     }
 
     @Override
@@ -63,5 +65,9 @@ public class RepairRepository extends BaseRepository<Repair> {
         Update.setDate(3, entity.getStartRepairDate());
         Update.setDate(4, entity.getEndRepairDate());
         Update.setString(5, entity.getNameOfDeviceInRepair());
+    }
+
+    public List<Repair> repairs(String repair) {
+        return null;
     }
 }

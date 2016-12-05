@@ -2,6 +2,8 @@ package Repos;
 
 import Computer.Repair;
 
-public interface IRepairRepository extends IRepository<Repair>{
+import java.util.List;
 
+public interface IRepairRepository extends IRepository<Repair>{
+    public List<Repair> repairs(String repair);
 }

@@ -1,10 +1,12 @@
 package Repos;
-import Repos.UOW.IUnitOfWork
+import Repos.Mappers.ProfileMapper;
+import Repos.Mappers.RepairMapper;
+import Repos.UOW.IUnitOfWork;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class RepositoryCatalog implements IRepositoryCatalog{
+public class RepositoryCatalog {
     IUnitOfWork uow;
     Connection connection;
 
@@ -16,20 +18,12 @@ public class RepositoryCatalog implements IRepositoryCatalog{
     }
 
 
-    public IPersonRepository people() {
-        return new PersonRepository(connection, new PersonMapper(), uow);
+    public IProfileRepository profiles() {
+        return new ProfileRepository(connection, new ProfileMapper(), uow);
     }
 
-    public IRepairRepository accounts() {
-        return new AccountRepository(connection, new AccountMapper(), people(), uow);
-    }
-
-    public IEnumRepository dictionaries() {
-        return new EnumDictionaryRepository(connection, new EnumDirectoryMapper(), uow);
-    }
-
-    public IHistoryRepository history() {
-        return new HistoryLogRepository(connection, new HistoryLogMapper(), uow);
+    public IRepairRepository repairs() {
+        return new RepairRepository(connection, new RepairMapper(), uow);
     }
 
     public void saveAndClose() {

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnitOfWork {
+public class UnitOfWork implements IUnitOfWork{
     private List<Entity> entities = new ArrayList<Entity>();
 
     Connection connection;
@@ -30,20 +30,20 @@ public class UnitOfWork {
     }
 
     public void markAsNew(Entity entity, IUnitOfWorkRepository repository) {
-        entity.setState(EntityState.New);
+        entity.setState(Entity.EntityState.New);
         entity.setRepository(repository);
         entities.add(entity);
     }
 
     public void markAsDeleted(Entity entity, IUnitOfWorkRepository repository) {
-        entity.setState(EntityState.Deleted);
+        entity.setState(Entity.EntityState.Deleted);
         entity.setRepository(repository);
         entities.add(entity);
 
     }
 
     public void markAsChanged(Entity entity, IUnitOfWorkRepository repository) {
-        entity.setState(EntityState.Changed);
+        entity.setState(Entity.EntityState.Changed);
         entity.setRepository(repository);
         entities.add(entity);
     }

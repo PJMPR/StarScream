@@ -1,4 +1,6 @@
 package Repos;
 
-public class IRepositoryCatalog {
+public interface IRepositoryCatalog {
+    public IRepairRepository repairs();
+    public IProfileRepository profiles();
 }

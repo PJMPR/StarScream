@@ -1,7 +1,9 @@
 package Repos;
 
-/**
- * Created by User on 2016-12-03.
- */
-public interface IProfileRepository {
+import Computer.Profile;
+
+import java.util.List;
+
+public interface IProfileRepository extends IRepository<Profile>{
+    public List<Profile> profiles(String name);
 }
