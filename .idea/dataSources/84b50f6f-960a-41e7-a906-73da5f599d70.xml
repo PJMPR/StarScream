@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="HSQLDB (Local) - testdb">
-  <database-model serializer="dbm" rdbms="HSQLDB" format-version="2.6">
-    <database id="1" name="PUBLIC">
-      <visible>1</visible>
+  <database-model serializer="dbm" rdbms="HSQLDB" format-version="4.0">
+    <root id="1"/>
+    <database id="2" parent="1" name="PUBLIC">
+      <Visible>1</Visible>
     </database>
-    <schema id="2" parent="1" name="PUBLIC">
-      <visible>1</visible>
+    <schema id="3" parent="2" name="PUBLIC">
+      <Visible>1</Visible>
     </schema>
-    <schema id="3" parent="1" name="INFORMATION_SCHEMA"/>
-    <schema id="4" parent="1" name="SYSTEM_LOBS"/>
+    <schema id="4" parent="2" name="INFORMATION_SCHEMA"/>
+    <schema id="5" parent="2" name="SYSTEM_LOBS"/>
   </database-model>
 </dataSource>

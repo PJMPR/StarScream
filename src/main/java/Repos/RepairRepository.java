@@ -2,13 +2,15 @@ package Repos;
 
 import Computer.Repair;
 import Repos.Mappers.IMapRSIntoEntity;
+import Repos.UOW.IUnitOfWork;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
-public class RepairRepository extends BaseRepository<Repair> {
-    public RepairRepository(Connection connection, IMapRSIntoEntity<Repair> mapper){
-        super(connection, mapper);
+public class RepairRepository extends BaseRepository<Repair> implements IRepairRepository{
+    public RepairRepository(Connection connection, IMapRSIntoEntity<Repair> mapper, IUnitOfWork uow){
+        super(connection, mapper, uow);
     }
 
     @Override
@@ -38,6 +40,15 @@ public class RepairRepository extends BaseRepository<Repair> {
         return "UPDATE Repair set Profile ID = ?, NameOfDevice = ?, DateOfAcceptance = ?, ExpectedDateOfReception = ?, Price = ? WHERE ID = ?";
     }
 
+    /*
+        Select by ProfileID
+    */
+    protected String SelectByProfileID(){
+        return "SELECT * FROM"
+                + tableName()
+                + "WHERE ProfileID = ?";
+        }
+
     @Override
     protected void setupInsert(Repair entity) throws SQLException{
         Insert.setInt(1, entity.getPrice());
@@ -55,6 +66,8 @@ public class RepairRepository extends BaseRepository<Repair> {
         Update.setDate(4, entity.getEndRepairDate());
         Update.setString(5, entity.getNameOfDeviceInRepair());
     }
-    
-    //select po ProfileID
+
+    public List<Repair> repairs(String repair) {
+        return null;
+    }
 }

@@ -1,10 +1,8 @@
 import Computer.Profile;
 import Computer.Repair;
-import Repos.Mappers.IMapRSIntoEntity;
-import Repos.Mappers.ProfileMapper;
-import Repos.Mappers.RepairMapper;
-import Repos.ProfileRepository;
-import Repos.RepairRepository;
+import Repos.UOW.UnitOfWork;
+import Repos.RepositoryCatalog;
+import java.util.List;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,29 +10,22 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main( String[] args ){
-        String URL = "jdbc:hsqldb:hsql://localhost/workdb";
+        String URL = "jdbc:hsqldb:hsql:localhost/workdb";
+
         try {
             Connection connection = DriverManager.getConnection(URL);
-            IMapRSIntoEntity<Repair> repairMapper = new RepairMapper();
-            IMapRSIntoEntity<Profile> profileMapper = new ProfileMapper();
 
-            RepairRepository repo = new RepairRepository(connection, repairMapper);
-            ProfileRepository repo1 = new ProfileRepository(connection, profileMapper);
+            RepositoryCatalog catalog = new RepositoryCatalog(new UnitOfWork(connection), connection);
 
-            Repair SamsungGalaxyS5 = new Repair();
-            SamsungGalaxyS5.setNameOfDeviceInRepair("Samsung Galaxy S5");
-            SamsungGalaxyS5.setPrice(50);
+            Repair device = new Repair();
+            device.setNameOfDeviceInRepair("Samsung Galaxy S5");
 
-            System.out.println("Adding the device to the database");
-            repo.Add(SamsungGalaxyS5);
-            
-            Profile Jan = new Profile();
-            Jan.setName("Jan");
-            Jan.setSurname("Miętki");
-            Jan.setEmail("jan.mietki@gmail.com");
-            System.out.println("Adding profile to the database");
-            repo1.Add(Jan);
-            
+            catalog.repairs().Add(device);
+
+            System.out.println("Zapisuję urządzenie");
+
+            catalog.saveAndClose();
+
         }catch (SQLException e){
             e.printStackTrace();
         }

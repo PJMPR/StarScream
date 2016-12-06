@@ -2,13 +2,15 @@ package Repos;
 
 import Computer.Profile;
 import Repos.Mappers.IMapRSIntoEntity;
+import Repos.UOW.IUnitOfWork;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
-public class ProfileRepository extends BaseRepository<Profile> {
-    public ProfileRepository(Connection connection, IMapRSIntoEntity<Profile> mapper){
-        super(connection, mapper);
+public class ProfileRepository extends BaseRepository<Profile> implements IProfileRepository {
+    public ProfileRepository(Connection connection, IMapRSIntoEntity<Profile> mapper, IUnitOfWork uow){
+        super(connection, mapper, uow);
     }
 
     protected String CreateTableSQL() {
@@ -52,6 +54,9 @@ public class ProfileRepository extends BaseRepository<Profile> {
         Update.setString(4, entity.getPassword());
         Update.setInt(5, entity.getTotalPrice());
     }
-    
+
+    public List<Profile> profiles(String name) {
+        return null;
+    }
     //nowa metoda fillWithProfileRepairs
 }
