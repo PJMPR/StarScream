@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main( String[] args ){
-        String URL = "jdbc:hsqldb:hsql:localhost/workdb";
+        String URL = "jdbc:hsqldb:hsql://localhost/workdb";
 
         try {
             Connection connection = DriverManager.getConnection(URL);
