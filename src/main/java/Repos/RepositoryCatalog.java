@@ -10,13 +10,11 @@ public class RepositoryCatalog {
     IUnitOfWork uow;
     Connection connection;
 
-
     public RepositoryCatalog(IUnitOfWork uow, Connection connection) {
         super();
         this.uow = uow;
         this.connection = connection;
     }
-
 
     public IProfileRepository profiles() {
         return new ProfileRepository(connection, new ProfileMapper(), uow);
@@ -33,6 +31,5 @@ public class RepositoryCatalog {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-
     }
 }
