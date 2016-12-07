@@ -1,7 +1,6 @@
 package Computer;
 
 import java.sql.Date;
-import java.util.List;
 
 public class Repair implements IHaveID {
 //Price = get.somethingFromPriceList
@@ -59,5 +58,13 @@ public class Repair implements IHaveID {
 
     public void setNameOfDeviceInRepair(String nameOfDeviceInRepair) {
         NameOfDeviceInRepair = nameOfDeviceInRepair;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }

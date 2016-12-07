@@ -32,7 +32,7 @@ public class RepairRepository extends BaseRepository<Repair> implements IRepairR
 
     @Override
     protected String InsertSQL(){
-        return "INSERT INTO Repair(ProfileID, NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?, ?)";
+        return "INSERT INTO Repair(ProfileID,  NameOfDevice, DateOfAcceptance, ExpectedDateOfReception, Price) VALUES (?, ?, ?, ?, ?)";
     }
 
     @Override
@@ -51,21 +51,22 @@ public class RepairRepository extends BaseRepository<Repair> implements IRepairR
 
     @Override
     protected void setupInsert(Repair entity) throws SQLException{
-        Insert.setInt(1, entity.getPrice());
-        Insert.setInt(2, entity.getProfileID());
+        Insert.setInt(1, entity.getProfileID());
+        Insert.setString(2, entity.getNameOfDeviceInRepair());
         Insert.setDate(3, entity.getStartRepairDate());
         Insert.setDate(4, entity.getEndRepairDate());
-        Insert.setString(5, entity.getNameOfDeviceInRepair());
+        Insert.setInt(5, entity.getPrice());
     }
 
     @Override
     protected void setupUpdate(Repair entity) throws SQLException{
-        Update.setInt(1, entity.getPrice());
+
+        Update.setInt(1, entity.getID());
         Update.setInt(2, entity.getProfileID());
-        Update.setDate(3, entity.getStartRepairDate());
-        Update.setDate(4, entity.getEndRepairDate());
-        Update.setString(5, entity.getNameOfDeviceInRepair());
-        Update.setInt(6, entity.getID());
+        Update.setString(3, entity.getNameOfDeviceInRepair());
+        Update.setDate(4, entity.getStartRepairDate());
+        Update.setDate(5, entity.getEndRepairDate());
+        Update.setInt(6, entity.getPrice());
     }
 
     public List<Repair> repairs(String repair) {

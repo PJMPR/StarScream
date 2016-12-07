@@ -20,13 +20,22 @@ public class Main {
 
             Repair device = new Repair();
 
-            device.setProfileID(1);
-            device.setStartRepairDate(Date(2014-03-02));
-            device.setEndRepairDate(2014-03-02);
+            device.setProfileID(0);
+            device.setStartRepairDate(new Date(116, 9, 10));
+            device.setEndRepairDate(new Date(116, 9, 11));
             device.setNameOfDeviceInRepair("Samsung");
             device.setPrice(50);
 
             catalog.repairs().Add(device);
+
+            Profile profile = new Profile();
+            profile.setName("Jan");
+            profile.setSurname("Miętki");
+            profile.setEmail("email@gmail.com");
+            profile.setPassword("qwerty");
+            profile.setTotalPrice(50);
+            catalog.profiles().Add(profile);
+            System.out.println("Zapisuję profil");
 
             List<Repair> repairs = catalog.repairs().repairs("Samsung");
 
