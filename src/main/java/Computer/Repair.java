@@ -1,6 +1,8 @@
 package Computer;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Repair implements IHaveID {
@@ -60,4 +62,23 @@ public class Repair implements IHaveID {
     public void setNameOfDeviceInRepair(String nameOfDeviceInRepair) {
         NameOfDeviceInRepair = nameOfDeviceInRepair;
     }
+
+	public void setEndRepairDate(int i) throws ParseException {
+		Integer value = i;
+		SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
+		Date date = (Date) originalFormat.parse(value.toString());
+		convertUtilToSql(date);
+	}
+
+	public void setStartRepairDate(int i) throws ParseException {
+		Integer value = i;
+		SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
+		Date date = (Date) originalFormat.parse(value.toString());
+		convertUtilToSql(date);
+	}
+	
+	 private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+		java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+		return sDate;
+	 }
 }
