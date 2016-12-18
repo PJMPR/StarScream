@@ -21,6 +21,7 @@ public abstract class BaseRepository <TEntity extends IHaveID>
     protected PreparedStatement Update;
     protected PreparedStatement SelectByID;
     protected PreparedStatement SelectAll;
+    protected PreparedStatement selectLast;
 
     protected IMapRSIntoEntity<TEntity> mapper;
 
@@ -36,9 +37,22 @@ public abstract class BaseRepository <TEntity extends IHaveID>
             Update = connection.prepareStatement(UpdateSQL());
             SelectByID = connection.prepareStatement(SelectByIdSQL());
             SelectAll = connection.prepareStatement(SelectAllSQL());
+            selectLast = connection.prepareStatement(selectLastSql());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public  int getMaxId(){
+        try{
+            ResultSet rs = selectLast.executeQuery();
+            while (rs.next()){
+                return (rs.getInt("Id"));
+            }
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return 0;
     }
 
     public TEntity get(int ProfileID){
@@ -152,6 +166,7 @@ public abstract class BaseRepository <TEntity extends IHaveID>
                 + " WHERE id=?";
     }
 
+    protected String selectLastSql() { return "SELECT MAX(id) as Id FROM " + tableName() + " LIMIT 1";}
     protected String SelectAllSQL() {
         return "SELECT * FROM " + tableName();
     }

@@ -22,7 +22,6 @@ public class ProfileTest extends HttpServlet {
         HttpSession session = request.getSession();
         String nameSession = request.getParameter("Name");
         String surnameSession = request.getParameter("Surname");
-
         Profile profile = new Profile();
         profile.setName(nameSession);
         profile.setSurname(surnameSession);
