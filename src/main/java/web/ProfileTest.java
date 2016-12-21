@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns="/addProfile")
-=======
 public class ProfileTest extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
