@@ -1,16 +1,38 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 2016-12-18
-  Time: 18:08
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <title>$Title$</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
   </head>
+
   <body>
-  $END$
+
+    <%!
+      void DoSomething()
+      {
+
+      }
+    %>
+
+    <%
+      List<String> fruits = new ArrayList<String>();
+      fruits.add("apple");
+      fruits.add("orange");
+      fruits.add("banana");
+    %>
+
+    <ol>
+      <%for(String fruit: fruits){ %>
+      <li><%=fruit %></li>
+      <%
+
+
+        DoSomething(); %>
+      <%}
+      %>
+    </ol>
   </body>
 </html>

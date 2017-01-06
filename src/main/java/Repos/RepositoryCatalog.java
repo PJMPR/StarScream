@@ -2,13 +2,25 @@ package Repos;
 import Repos.Mappers.ProfileMapper;
 import Repos.Mappers.RepairMapper;
 import Repos.UOW.IUnitOfWork;
+import Repos.UOW.UnitOfWork;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class RepositoryCatalog {
     IUnitOfWork uow;
     Connection connection;
+
+    public RepositoryCatalog(String url) {
+        super();
+        try {
+            this.connection = DriverManager.getConnection(url);
+            this.uow = new UnitOfWork(this.connection);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public RepositoryCatalog(IUnitOfWork uow, Connection connection) {
         super();
